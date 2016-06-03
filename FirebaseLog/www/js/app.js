@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'
       views: {
         'menuContent': {
           templateUrl: 'templates/login.html',
-          controller: 'LogCtrl'
+          controller: 'LoginCtrl'
         }
       }
     })
@@ -56,6 +56,7 @@ angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'
       views: {
         'menuContent': {
           templateUrl: 'templates/user.html',
+          controller: 'LoginCtrl'
         }
       }
     });
