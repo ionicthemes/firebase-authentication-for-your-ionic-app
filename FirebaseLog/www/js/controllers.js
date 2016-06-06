@@ -1,61 +1,59 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, $cordovaFacebook) {
-  var ref = new Firebase("https://logfirebase.firebaseio.com/");
-  $scope.login = function(data){
-    ref.authWithPassword({
-      email    : data.email,
-      password : data.password
-    }, function(error, authData) {
-      if (error) {
-        switch (error.code) {
-          case "INVALID_EMAIL":
-          console.log("The specified user account email is invalid.");
-          break;
-          case "INVALID_PASSWORD":
-          console.log("The specified user account password is incorrect.");
-          break;
-          case "INVALID_USER":
-          console.log("The specified user account does not exist.");
-          break;
-          default:
-          console.log("Error logging user in:", error);
-        }
-      } else {
-      console.log("Authenticated successfully with payload:", authData);
+.controller('LoginCtrl', function($scope, $state, $cordovaFacebook,user_data) {
+  if(user_data){
+      $state.go('user');
+  }
+  else{
+    var ref = new Firebase("https://logfirebase.firebaseio.com/");
+    $scope.login = function(data){
+      if(data == undefined){
+        console.log("email or password empty");
       }
-    });
-  }
+      else{
+        ref.authWithPassword({
+            email    : data.email,
+            password : data.password
+          }, function(error, authData) {
+            console.log(error);
+            if (error) {
+              console.log("Error creating user:", error);
+            } else {
+              console.log("Successfully created user account with uid:", authData.uid);
+              $state.go('user');
+            }
+          });
+        }
+    }
 
-  $scope.logout = function(){
-    ref.unauth();
-  }
-
-  $scope.fbLogin = function(){
-    if(ionic.Platform.isWebView()){
-      $cordovaFacebook.login(["public_profile", "email"]).then(function(success){
-        console.log(success);
-        ref.authWithOAuthToken("facebook", success.authResponse.accessToken, function(error, authData) {
+    $scope.fbLogin = function(){
+      if(ionic.Platform.isWebView()){
+        $cordovaFacebook.login(["public_profile", "email"]).then(function(success){
+          console.log(success);
+          ref.authWithOAuthToken("facebook", success.authResponse.accessToken, function(error, authData) {
+            if (error) {
+              console.log('Firebase login failed!', error);
+            } else {
+              console.log('Authenticated successfully with payload:', authData);
+              $state.go('user');
+            }
+          });
+        }, function(error){
+          console.log(error);
+        });
+      }
+      else {
+        ref.authWithOAuthPopup("facebook", function(error, authData) {
           if (error) {
-            console.log('Firebase login failed!', error);
+            console.log("Login Failed!", error);
           } else {
-            console.log('Authenticated successfully with payload:', authData);
+            console.log("Authenticated successfully with payload:", authData);
+            $state.go('user');
           }
         });
-      }, function(error){
-        console.log(error);
-      });
-    }
-    else {
-      ref.authWithOAuthPopup("facebook", function(error, authData) {
-        if (error) {
-          console.log("Login Failed!", error);
-        } else {
-          console.log("Authenticated successfully with payload:", authData);
-        }
-      });
-    }
-  };
+      }
+    };
+  }
 })
 
 .controller('SignUpCtrl', function($scope, $stateParams) {
@@ -72,4 +70,36 @@ angular.module('starter.controllers', [])
         }
       });
     };
+})
+
+.controller('UserCtrl', function($scope, user_data, $state){
+    var ref = new Firebase("https://logfirebase.firebaseio.com/");
+    console.log(user_data);
+    if(user_data){
+      if(user_data.provider == "facebook"){
+        $scope.loggedEmail = user_data.facebook.displayName;
+        $scope.ImageURL = user_data.facebook.profileImageURL;
+      }
+      else{
+        $scope.loggedEmail = user_data.password.email;
+        $scope.ImageURL = user_data.password.profileImageURL;
+      }
+    }
+    else{
+      $state.go('login');
+    }
+
+    $scope.logout = function(){
+      ref.unauth();
+      $state.go('login');
+    }
+})
+
+.controller('MenuCtrl', function($scope, user_data, $state){
+    if(user_data){
+      $scope.ShowUser = true;
+    }
+    else{
+      $scope.ShowUser = false;
+    }
 });

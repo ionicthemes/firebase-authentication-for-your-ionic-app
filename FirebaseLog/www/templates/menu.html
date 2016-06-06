@@ -18,13 +18,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/login">
+        <ion-item ng-hide='ShowUser' menu-close href="#/app/login">
           Login
         </ion-item>
         <ion-item menu-close href="#/app/signup">
           Signup
         </ion-item>
-        <ion-item menu-close href="#/app/user">
+        <ion-item ng-show='ShowUser' menu-close href="#/app/user">
           User
         </ion-item>
       </ion-list>

@@ -1,8 +1,12 @@
 <ion-view view-title="User">
     <ion-content class="padding">
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">User</h1>
+      </ion-header-bar>
       <br>
-      <label ng-show="!showEmail"> No user is logged-in</label>
-      <label ng-show="showEmail"> Welcome! {{loggedEmail}} </label>
+      <!-- <label ng-show="!showEmail"> No user is logged-in</label> -->
+      <br><label> Welcome {{loggedEmail}} </label>
+      <br><img ng-src= "{{ImageURL}}">
       <br><button ng-click="logout()">LogOut</button>
     </ion-content>
 </ion-view>

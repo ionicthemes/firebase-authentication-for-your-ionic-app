@@ -1,5 +1,10 @@
 <ion-view view-title="Sign-In">
     <ion-content class="padding">
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Log in</h1>
+      </ion-header-bar>
+      <br>
+      <br>
         <div class="list list-inset">
             <label class="item item-input">
                 <input id = 'emailText' type="text" placeholder="Email" ng-model="data.email">
@@ -11,7 +16,7 @@
         <button class="button button-block button-positive"  ng-click="login(data)">Login</button>
         <button class="button button-block button-positive" ng-click="fbLogin()">Login with Facebook</button>
         <p class="text-center">
-            <a href="#/tab/signup">Sign Up</a>
+            <a href="#/signup">Sign Up</a>
         </p><br>
     </ion-content>
 </ion-view>

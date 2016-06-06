@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'])
+angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers','starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,41 +25,45 @@ angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-  })
+    // .state('app', {
+    // url: '/app',
+    // abstract: true,
+    // templateUrl: 'templates/menu.html',
+    // controller: 'MenuCtrl',
+    // resolve:{
+    //     user_data:function(UserService){
+    //     return UserService.getUser();
+    //     }
+    //   }
+    // })
 
-  .state('app.login', {
+  .state('login', {
       url: '/login',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginCtrl'
-        }
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl',
+      resolve:{
+          user_data:function(UserService){
+          return UserService.getUser();
+          }
       }
     })
 
-  .state('app.signup', {
+  .state('signup', {
       url: '/signup',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/signup.html',
-          controller: 'SignUpCtrl'
-        }
-      }
+      templateUrl: 'templates/signup.html',
+      controller: 'SignUpCtrl'
     })
 
-    .state('app.user', {
+    .state('user', {
       url: '/user',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/user.html',
-          controller: 'LoginCtrl'
+      templateUrl: 'templates/user.html',
+      controller: 'UserCtrl',
+      resolve:{
+          user_data:function(UserService){
+          return UserService.getUser();
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/user');
+  $urlRouterProvider.otherwise('/login');
 });
