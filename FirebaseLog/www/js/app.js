@@ -42,8 +42,8 @@ angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl',
       resolve:{
-          user_data:function(UserService){
-          return UserService.getUser();
+          user_data:function(AuthService){
+          return AuthService.getUser();
           }
       }
     })
@@ -59,8 +59,8 @@ angular.module('starter', ['ionic', 'firebase','ngCordova','starter.controllers'
       templateUrl: 'templates/user.html',
       controller: 'UserCtrl',
       resolve:{
-          user_data:function(UserService){
-          return UserService.getUser();
+          user_data:function(AuthService){
+          return AuthService.getUser();
         }
       }
     });
