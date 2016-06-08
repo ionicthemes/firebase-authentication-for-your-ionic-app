@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, $cordovaFacebook,user_data) {
+.controller('LoginCtrl', function($scope, $state, user_data) {
   if(user_data){
       $state.go('user');
   }
