@@ -59,16 +59,22 @@ angular.module('starter.controllers', [])
 .controller('SignUpCtrl', function($scope, $stateParams) {
     $scope.signup = function(data){
       var ref = new Firebase("https://logfirebase.firebaseio.com/");
-      ref.createUser({
-        email    : data.email,
-        password : data.password
-      }, function(error, userData) {
-        if (error) {
-          console.log("Error creating user:", error);
-        } else {
-          console.log("Successfully created user account with uid:", userData.uid);
-        }
-      });
+      if(data == undefined){
+        console.log("email or password empty");
+      }
+      else{
+        ref.createUser({
+          email    : data.email,
+          password : data.password,
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+            alert("sign up succesful");
+          }
+        });
+      }
     };
 })
 
