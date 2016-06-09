@@ -23,13 +23,14 @@ angular.module('starter.services', [])
     };
 
     this.doFbLogin= function(){
+      var deferred = $q.defer();
       ref.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
-          console.log("Login Failed!", error);
+          deferred.reject(error);
         } else {
-          console.log("Authenticated successfully with payload:", authData);
-          $state.go('user');
+          deferred.resolve(authData);
         }
       });
-    }
-})
+      return deferred.promise;
+    };
+});

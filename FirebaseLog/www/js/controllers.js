@@ -12,10 +12,18 @@ angular.module('starter.controllers', [])
           $scope.errors = errors;
           $ionicLoading.hide();
         });
-    }
+    };
 
     $scope.fbLogin = function(){
-        AuthService.doFbLogin();
+        $ionicLoading.show({remplate:'Signing up...'})
+        AuthService.doFbLogin()
+        .then(function(data){
+          $state.go("user");
+          $ionicLoading.hide();
+        },function(errors){
+          $scope.errors = errors;
+          $ionicLoading.hide();
+        });
     };
 })
 
