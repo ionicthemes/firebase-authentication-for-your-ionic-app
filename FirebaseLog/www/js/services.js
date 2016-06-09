@@ -33,4 +33,25 @@ angular.module('starter.services', [])
       });
       return deferred.promise;
     };
+
+    this.doSignup= function(user){
+      var deferred = $q.defer(),
+          auth_Service = this;
+      ref.createUser({
+        email    : user.email,
+        password : user.password,
+      }, function(error, userData) {
+        if (error) {
+          deferred.reject(error);
+        } else {
+          auth_Service.doLogin(user)
+          .then(function(data){
+              deferred.resolve(data);
+          }, function(error){
+            deferred.reject(error);
+          })
+        }
+      });
+      return deferred.promise;
+    };
 });

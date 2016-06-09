@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope, $state, AuthService, $ionicLoading) {
 
     $scope.login = function(user){
-        $ionicLoading.show({template:'Loging in...'});
+        $ionicLoading.show({template:'Logging in...'});
         AuthService.doLogin(user)
         .then(function(data){
               $state.go("user");
@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.fbLogin = function(){
-        $ionicLoading.show({remplate:'Signing up...'})
+        $ionicLoading.show({template:'Logging in...'});
         AuthService.doFbLogin()
         .then(function(data){
           $state.go("user");
@@ -27,25 +27,17 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SignUpCtrl', function($scope, $stateParams) {
-    $scope.signup = function(data){
-      var ref = new Firebase("https://logfirebase.firebaseio.com/");
-      if(data == undefined){
-        console.log("email or password empty");
-      }
-      else{
-        ref.createUser({
-          email    : data.email,
-          password : data.password,
-        }, function(error, userData) {
-          if (error) {
-            console.log("Error creating user:", error);
-          } else {
-            console.log("Successfully created user account with uid:", userData.uid);
-            alert("sign up succesful");
-          }
+.controller('SignUpCtrl', function($scope,$state,$stateParams,AuthService,$ionicLoading) {
+    $scope.signup = function(user){
+        $ionicLoading.show({template:'Signing up...'});
+        AuthService.doSignup(user)
+        .then(function(data){
+          $state.go('user');
+          $ionicLoading.hide();
+        },function(errors){
+          $scope.errors = errors;
+          $ionicLoading.hide();
         });
-      }
     };
 })
 
