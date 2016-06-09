@@ -28,7 +28,6 @@ angular.module('starter.controllers', [])
 
     $scope.fbLogin = function(){
         ref.authWithOAuthPopup("facebook", function(error, authData) {
-          debugger;
           if (error) {
             console.log("Login Failed!", error);
           } else {

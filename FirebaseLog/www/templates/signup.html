@@ -5,15 +5,17 @@
       </ion-header-bar>
       <br>
       <br>
+      <form name="signup_form" class="form-container" novalidate>
         <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" id="emailText" placeholder="Email" ng-model="data.email">
+                <input type="text" placeholder="Email" ng-model="data.email" required>
             </label>
             <label class="item item-input">
-                <input type="password" id="passwordText" placeholder="Password" ng-model="data.password">
+                <input type="password"  placeholder="Password" ng-model="data.password" required>
             </label>
         </div>
-        <button class="button button-block button-positive" ng-click="signup(data)">Create Account</button>
+        <button class="button button-block button-positive" ng-click="signup(data)" ng-disabled="signup_form.$invalid">Create Account</button>
+      </form>
         <p class="text-center">
             <button class="button button-clear button-positive" ui-sref="login">
               Already have an account?
