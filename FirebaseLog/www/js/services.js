@@ -1,8 +1,35 @@
 angular.module('starter.services', [])
 
-.service('AuthService', function(){
+.service('AuthService', function($q){
     var ref = new Firebase("https://logfirebase.firebaseio.com/");
-    this.getUser= function(){
+    this.userIsLog= function(){
         return ref.getAuth();
+    };
+
+    this.doLogin= function(user){
+      var deferred = $q.defer();
+      ref.authWithPassword({
+          email    : user.email,
+          password : user.password
+        }, function(error, authData) {
+          console.log(error);
+          if (error) {
+            deferred.reject(error);
+          } else {
+            deferred.resolve(authData);
+          }
+        });
+        return deferred.promise;
+    };
+
+    this.doFbLogin= function(){
+      ref.authWithOAuthPopup("facebook", function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          $state.go('user');
+        }
+      });
     }
 })

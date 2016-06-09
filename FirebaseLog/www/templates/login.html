@@ -8,15 +8,18 @@
       <form name="login_form" class="form-container" novalidate>
         <div class="list list-inset">
             <label class="item item-input">
-                <input id = 'emailText' type="text" placeholder="Email" ng-model="data.email" required>
+                <input type="email" placeholder="Email" ng-model="user.email" required>
             </label>
             <label class="item item-input">
-                <input id ='passwordText' type="password" placeholder="Password" ng-model="data.password" required>
+                <input type="password" placeholder="Password" ng-model="user.password" required>
             </label>
         </div>
-        <button class="button button-block button-positive"  ng-click="login(data)" ng-disabled="login_form.$invalid">Login</button>
+        <button class="button button-block button-positive"  ng-click="login(user)" ng-disabled="login_form.$invalid">Login</button>
         <button class="button button-block button-positive" ng-click="fbLogin()">Login with Facebook</button>
       </form>
+      <div ng-show="errors">
+        <p> {{errors}}</p>
+      </div>
         <p class="text-center">
             <button class="button button-clear button-positive" ui-sref="signup">
               Sign Up

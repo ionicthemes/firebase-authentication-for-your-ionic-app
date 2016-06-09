@@ -1,43 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $state, user_data) {
-  if(user_data){
-      $state.go('user');
-  }
-  else{
-    var ref = new Firebase("https://logfirebase.firebaseio.com/");
-    $scope.login = function(data){
-      if(data == undefined){
-        console.log("email or password empty");
-      }
-      else{
-        ref.authWithPassword({
-            email    : data.email,
-            password : data.password
-          }, function(error, authData) {
-            console.log(error);
-            if (error) {
-              console.log("Error creating user:", error);
-            } else {
-              console.log("Successfully created user account with uid:", authData.uid);
-              $state.go('user');
-            }
-          });
-        }
+.controller('LoginCtrl', function($scope, $state, AuthService, $ionicLoading) {
+
+    $scope.login = function(user){
+        $ionicLoading.show({template:'Loging in...'});
+        AuthService.doLogin(user)
+        .then(function(data){
+              $state.go("user");
+              $ionicLoading.hide();
+        },function(errors){
+          $scope.errors = errors;
+          $ionicLoading.hide();
+        });
     }
 
     $scope.fbLogin = function(){
-        ref.authWithOAuthPopup("facebook", function(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-            $state.go('user');
-          }
-        });
-      //}
+        AuthService.doFbLogin();
     };
-  }
 })
 
 .controller('SignUpCtrl', function($scope, $stateParams) {
