@@ -11,7 +11,6 @@ angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.se
   console.log(AuthService.userIsLog());
   $ionicPlatform.ready(function() {
       if(AuthService.userIsLog()){
-        debugger;
           $state.go("user");
       }
       else{
@@ -61,11 +60,6 @@ angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.se
       url: '/user',
       templateUrl: 'templates/user.html',
       controller: 'UserCtrl',
-      resolve:{
-          user_data:function(AuthService){
-          return AuthService.userIsLog();
-        }
-      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
