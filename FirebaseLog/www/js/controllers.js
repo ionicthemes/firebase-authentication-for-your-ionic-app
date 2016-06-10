@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('UserCtrl', function($scope, user_data, $state){
+.controller('UserCtrl', function($scope, user_data, $state,AuthService){
     var ref = new Firebase("https://logfirebase.firebaseio.com/");
     console.log(user_data);
     if(user_data){
@@ -59,7 +59,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.logout = function(){
-      ref.unauth();
+      AuthService.doLogout();
       $state.go('login');
     }
 });

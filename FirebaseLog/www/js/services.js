@@ -54,4 +54,8 @@ angular.module('starter.services', [])
       });
       return deferred.promise;
     };
+
+    this.doLogout= function(){
+      ref.unauth();
+    };
 });
