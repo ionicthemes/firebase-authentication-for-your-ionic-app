@@ -44,7 +44,6 @@ angular.module('starter.controllers', [])
 .controller('UserCtrl', function($scope, $state,AuthService){
     var user_data = AuthService.userIsLog();
     if(user_data){
-      debugger;
       if(user_data.provider == "facebook"){
         $scope.loggedEmail = user_data.facebook.displayName;
         $scope.ImageURL = user_data.facebook.profileImageURL;
