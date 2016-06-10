@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('UserCtrl', function($scope, $state,AuthService){
-    var user_data = AuthService.userIsLog();
+    var user_data = AuthService.getUser();
     if(user_data){
       if(user_data.provider == "facebook"){
         $scope.loggedEmail = user_data.facebook.displayName;
