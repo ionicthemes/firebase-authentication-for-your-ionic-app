@@ -8,7 +8,6 @@ angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.se
 
 .run(function($ionicPlatform, AuthService,$state) {
 
-  console.log(AuthService.userIsLog());
   $ionicPlatform.ready(function() {
       if(AuthService.userIsLog()){
           $state.go("user");
@@ -32,17 +31,6 @@ angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.se
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    // .state('app', {
-    // url: '/app',
-    // abstract: true,
-    // templateUrl: 'templates/menu.html',
-    // controller: 'MenuCtrl',
-    // resolve:{
-    //     user_data:function(UserService){
-    //     return UserService.getUser();
-    //     }
-    //   }
-    // })
 
   .state('login', {
       url: '/login',

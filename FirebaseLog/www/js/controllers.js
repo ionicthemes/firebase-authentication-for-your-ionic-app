@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SignUpCtrl', function($scope,$state,$stateParams,AuthService,$ionicLoading) {
+.controller('SignUpCtrl', function($scope,$state,AuthService,$ionicLoading) {
     $scope.signup = function(user){
         $ionicLoading.show({template:'Signing up...'});
         AuthService.doSignup(user)
