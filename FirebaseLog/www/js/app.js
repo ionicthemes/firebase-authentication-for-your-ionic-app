@@ -6,20 +6,18 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.services'])
 
-.run(function($ionicPlatform, AuthService,$state) {
-
-  $ionicPlatform.ready(function() {
-      if(AuthService.userIsLog()){
-          $state.go("user");
-      }
-      else{
-        $state.go("login");
-      }
+.run(function($ionicPlatform, AuthService, $state) {
+  $ionicPlatform.ready(function(){
+    if(AuthService.userIsAuthenticated()){
+      $state.go("user");
+    }
+    else{
+      $state.go("login");
+    }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -31,24 +29,26 @@ angular.module('starter', ['ionic', 'firebase','starter.controllers','starter.se
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-
   .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'LoginCtrl'
-    })
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
 
   .state('signup', {
-      url: '/signup',
-      templateUrl: 'templates/signup.html',
-      controller: 'SignUpCtrl'
-    })
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'SignUpCtrl'
+  })
 
-    .state('user', {
-      url: '/user',
-      templateUrl: 'templates/user.html',
-      controller: 'UserCtrl',
-    });
+  .state('user', {
+    url: '/user',
+    templateUrl: 'templates/user.html',
+    controller: 'UserCtrl',
+  })
+
+  ;
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 });
