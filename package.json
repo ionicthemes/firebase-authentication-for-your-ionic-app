@@ -1,14 +1,14 @@
 {
-  "name": "firebaselog",
-  "version": "1.1.1",
-  "description": "FirebaseLog: An Ionic project",
+  "name": "firebase_login",
+  "version": "1.0.0",
+  "description": "Ionic Login: An Ionic project",
   "dependencies": {
-    "firebase": "^3.0.3",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4"
+    "gulp-sass": "^2.0.4",
+    "firebase": "^3.0.3"
   },
   "devDependencies": {
     "bower": "^1.3.3",
