@@ -1,7 +1,7 @@
-# How to integrate user authentication to your ionic app
-In this tutorial we are going to explain how to add **Log in**, **Log out**, and **Sign up** functionality to your ionic app using the [Ionic Platform](http://ionic.io/platform "Ionic Platform") services.
+# How to integrate user authentication to your ionic app using Firebase
+In this tutorial we are going to explain how to add **Log in**, **Log out**, and **Sign up** functionality to your ionic app using the [Firebase](https://www.firebase.com/ "Firebase") services.
 
-## Follow the step-by-step instructions available here: https://ionicthemes.com/tutorials/about/add-ionic-platform-authentication-to-your-ionic-app
+## Follow the step-by-step instructions available here: https://ionicthemes.com/tutorials/about/add-firebase-authentication-to-your-ionic-app
 
 ## Setup
 
@@ -27,7 +27,7 @@ Follow these links if you want more information:
 
 First we need to link this new Ionic project with our reference repo on github. Clone this repo so we can start working on the app:
 - `git clone https://github.com/ionicthemes/firebase-authentication-for-your-ionic-app.git`
-- `cd firebase-auth`
+- `cd firebase-authentication-for-your-ionic-app`
 
 After this, we need to set up some stuff before starting working on the **_Ionic_** project. To do so, run these commands:
 - `npm install`
