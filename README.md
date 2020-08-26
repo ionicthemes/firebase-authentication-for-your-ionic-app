@@ -1,7 +1,11 @@
-# How to integrate user authentication to your ionic app using Firebase
-In this tutorial we are going to explain how to add **Log in**, **Log out**, and **Sign up** functionality to your ionic app using the [Firebase](https://www.firebase.com/ "Firebase") services.
+# Add Firebase authentication to Ionic Apps
+This repo is part of an Ionic Firebase Tutorial where you can learn how to add Firebase authentication to an Ionic Framework App.
 
-## Follow the step-by-step instructions available here: https://ionicthemes.com/tutorials/about/add-firebase-authentication-to-your-ionic-app
+As an example we are going to build a simple app that allows users to login and signup to your app using Firebase authentication services. Once they log in, they will see a home page with their basic profile info.
+
+### *Important note*: this tutorial is for Ionic v1. [Get the updated tutorial and example app built with Ionic 5 and Firebase](https://ionicthemes.com/tutorials/about/firebase-authentication-in-ionic-framework-apps). 
+
+Check all the details of this demo app in the step by step [Ionic 1 Firebase Auth Tutorial](https://ionicthemes.com/tutorials/about/add-firebase-authentication-to-your-ionic-app)
 
 ## Setup
 
@@ -35,3 +39,5 @@ After this, we need to set up some stuff before starting working on the **_Ionic
 
 Finally, to see the current state of the project, run:
 - `ionic serve`
+
+### [Find lots of Ionic Tutorials and Starter Apps in IonicThemes](https://ionicthemes.com).
